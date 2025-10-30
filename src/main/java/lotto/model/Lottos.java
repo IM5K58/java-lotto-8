@@ -14,5 +14,10 @@ public class Lottos {
         lottos.add(lotto);
     }
 
+    public int getSize(){
+        return lottos.size();
+    }
+
+
 
 }
