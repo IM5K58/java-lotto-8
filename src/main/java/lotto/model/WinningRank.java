@@ -24,7 +24,7 @@ public enum WinningRank {
         return prizeMoney;
     }
 
-    public WinningRank findRank(int matchCount, boolean bonusMatch) {
+    public static WinningRank findRank(int matchCount, boolean bonusMatch) {
         if (matchCount == 6) {
             return FIRST;
         }

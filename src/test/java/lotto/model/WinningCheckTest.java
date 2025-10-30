@@ -15,15 +15,13 @@ class WinningCheckTest {
         Lottos lottos = new Lottos();
         Lotto winningNumbers = new Lotto(List.of(1,2,3,4,5,6));
         int bonusNumber = 7;
-        WinningCheck winningCheck = new WinningCheck(winningNumbers, bonusNumber); //당첨번호와 보너스번호를 파라미터로 받아 생성자 생성
+        WinningCheck winningCheck = new WinningCheck(winningNumbers, bonusNumber);
         lottos.addLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6))); //1등
         lottos.addLotto(new Lotto(List.of(1, 2, 3, 4, 5, 7))); // 2등
         lottos.addLotto(new Lotto(List.of(1, 2, 3, 4, 5, 8))); // 3등
         lottos.addLotto(new Lotto(List.of(1, 2, 3, 4, 8, 10))); // 4등
         lottos.addLotto(new Lotto(List.of(1, 2, 3, 14, 18, 10))); // 5등
         lottos.addLotto(new Lotto(List.of(11, 12, 13, 14, 18, 10))); // Miss
-
-        WinningCheck winningCheck = new WinningCheck();
         long totalPrize = winningCheck.calculateTotalPrize(lottos);
 
         long predictedPrize = 2_000_000_000 + 30_000_000 + 1_500_000 + 50_000 + 5_000;
