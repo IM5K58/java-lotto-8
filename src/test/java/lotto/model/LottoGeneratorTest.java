@@ -15,6 +15,6 @@ class LottoGeneratorTest {
         LottoGenerator lottoGenerator = new LottoGenerator();
         List<Integer> res = lottoGenerator.generateLottoNumber();
         System.out.println(res);
-    }   
+    }
 
 }
