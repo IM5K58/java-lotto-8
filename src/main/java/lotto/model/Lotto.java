@@ -9,8 +9,8 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        sort(this.numbers);
     }
-
 
     public List<Integer> getLottoNumbers() {
         return Collections.unmodifiableList(numbers);
@@ -35,9 +35,11 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
-    public List<Integer> toLottoDTR(){
-        return this.numbers;
+
+    private void sort(List<Integer> numbers){
+        Collections.sort(numbers);
     }
+
 
 
 }
