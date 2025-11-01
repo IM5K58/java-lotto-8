@@ -23,5 +23,4 @@ public class Lottos {
     }
 
 
-
 }
