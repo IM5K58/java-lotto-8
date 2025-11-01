@@ -13,7 +13,7 @@ public class RankResultDTO {
         this.isBonus = isBonus;
         this.count = count;
     }
-    
+
     public int getMatchCount() {
         return matchCount;
     }
