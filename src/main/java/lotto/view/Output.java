@@ -2,6 +2,11 @@ package lotto.view;
 
 import lotto.dto.LottosDTO;
 import lotto.dto.LottoDTO;
+import lotto.dto.RankResultDTO;
+import lotto.dto.WinningResultDTO;
+
+import java.text.NumberFormat;
+
 public class Output {
     public void showLottoCounts(int lottocount){
         System.out.println(lottocount+"개를 구매했습니다.");
@@ -13,12 +18,35 @@ public class Output {
         }
     }
 
-    public void showWinningCounts(){
+    public void showWinningCounts(WinningResultDTO winningResultDTO){
         System.out.println("당첨 통계");
         System.out.println("---");
+        NumberFormat formatter = NumberFormat.getInstance();
+        for(RankResultDTO rankResultDTO: winningResultDTO.getWinningResultDTO()){
+            printWinningResults(rankResultDTO, formatter);
+        }
 
 
     }
+
+    private static void printWinningResults(RankResultDTO rankResultDTO, NumberFormat formatter) {
+        String prize = formatter.format(rankResultDTO.getPrizeMoney());
+        String prizeStr = formatter.format(prize);
+
+        String description;
+        if (rankResultDTO.isBonus()) {
+            description = String.format("%d개 일치, 보너스 볼 일치", rankResultDTO.getMatchCount());
+        } else {
+            description = String.format("%d개 일치", rankResultDTO.getMatchCount());
+        }
+
+        System.out.printf("%s (%s원) - %d개\n",
+                description,
+                prize,
+                rankResultDTO.getCount()
+        );
+    }
+
     public void showROI(double roi){
         System.out.print("총 수익률은 "+roi+"%입니다.");
     }
