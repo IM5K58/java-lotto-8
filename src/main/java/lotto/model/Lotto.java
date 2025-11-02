@@ -8,12 +8,13 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validate(numbers);
         this.numbers = numbers;
         sort(this.numbers);
     }
 
     public List<Integer> getLottoNumbers() {
-        return Collections.unmodifiableList(numbers);
+        return numbers;
     }
 
     public int matchCount(Lotto otherLotto){
