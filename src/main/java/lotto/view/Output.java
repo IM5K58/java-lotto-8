@@ -8,6 +8,7 @@ import lotto.dto.WinningResultDTO;
 import java.text.NumberFormat;
 
 public class Output {
+
     public void showLottoCounts(int lottocount){
         System.out.println(lottocount+"개를 구매했습니다.");
     }

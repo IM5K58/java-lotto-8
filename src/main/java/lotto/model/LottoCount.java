@@ -10,6 +10,10 @@ public class LottoCount {
         this.lottoCounts = money/1000;
     }
 
+    public int getLottoCounts() {
+        return lottoCounts;
+    }
+
     private void validate(int money){
         if(money < 1000){
             throw new IllegalArgumentException(AT_LEAST_ONE_LOTTO_WARNING);
