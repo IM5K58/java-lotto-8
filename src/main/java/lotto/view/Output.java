@@ -51,6 +51,6 @@ public class Output {
     public void showROI(double roi){
         DecimalFormat df = new DecimalFormat("#,##0.0");
         String formattedRoi = df.format(roi);
-        System.out.print("총 수익률은 "+roi+"%입니다.");
+        System.out.print("총 수익률은 "+formattedRoi+"%입니다.");
     }
 }

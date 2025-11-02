@@ -16,23 +16,23 @@ import java.util.Map;
 public class LottoController {
     Input input = new Input();
     Output output = new Output();
+    Validator validator = new Validator();
 
     public void run(){
         int money = Integer.parseInt(input.inputMoney());
-
         LottoCount lottoCounts = new LottoCount(money);
         int counts = lottoCounts.getLottoCounts();
         output.showLottoCounts(counts);
+
         Lottos lottos = new Lottos();
         LottoGenerator lottoGenerator = new LottoGenerator();
-
         List<LottoDTO> lottoDTOS = new ArrayList<>();
-        for(int i = 0; i < counts; i++){
+        for(int i = 0; i < counts; i++) {
             Lotto lotto = new Lotto(lottoGenerator.generateLottoNumber());
             lottoDTOS.add(new LottoDTO(lotto.getLottoNumbers()));
             lottos.addLotto(lotto);
-
         }
+
         LottosDTO lottosDTO = new LottosDTO(lottoDTOS);
         output.showLottos(lottosDTO);
 
@@ -41,11 +41,13 @@ public class LottoController {
         List<String> sep_res = separator.separate(inputLotto);
         Parser parser = new Parser();
         Lotto winningLotto = new Lotto(parser.integerParser(sep_res));
-
-        System.out.println();
         int bonusNumber = parser.integerParser(input.inputBonusNumber());
 
-        //bonusNumber와 LottoNumber의 중복 번호있는지 검증
+        try {
+            validator.validateBonusNumber(bonusNumber,winningLotto);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
 
         WinningCheck winningCheck = new WinningCheck(winningLotto, bonusNumber);
         Map<WinningRank, Integer> rankMap = winningCheck.getWinningTimes(lottos);
@@ -77,6 +79,7 @@ public class LottoController {
 
 
     }
+
 
 
 }

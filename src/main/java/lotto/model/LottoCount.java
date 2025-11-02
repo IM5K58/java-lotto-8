@@ -6,7 +6,10 @@ public class LottoCount {
     static final String MUST_DIVIDED_WITH_UNIT = "[ERROR] 1000으로 나누어 떨어질 수 있는 돈을 입력해야합니다.";
 
     public LottoCount(int money){
-        validate(money);
+
+        Validator validator = new Validator();
+        validator.validateMoney(money);
+
         this.lottoCounts = money/1000;
     }
 
@@ -14,12 +17,5 @@ public class LottoCount {
         return lottoCounts;
     }
 
-    private void validate(int money){
-        if(money < 1000){
-            throw new IllegalArgumentException(AT_LEAST_ONE_LOTTO_WARNING);
-        }
-        else if(money % 1000 != 0){
-            throw new IllegalArgumentException(MUST_DIVIDED_WITH_UNIT);
-        }
-    }
+
 }
