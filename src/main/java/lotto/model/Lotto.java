@@ -36,6 +36,14 @@ public class Lotto {
         }
     }
 
+    private void validate_two(List<Integer> numbers) {
+        for(Integer number : numbers){
+            if(!(number > 0 && number < 46)){
+                throw new IllegalArgumentException("[Error] 숫자가 잘못되었습니다.");
+            }
+        }
+    }
+
     private void sort(List<Integer> numbers){
         Collections.sort(numbers);
     }
