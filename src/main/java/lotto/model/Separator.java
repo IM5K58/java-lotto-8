@@ -7,14 +7,10 @@ public class Separator {
 
     static final String SEPARATOR = ",";
     public List<String> separate(String input){
-        try {
-            Validator validator = new Validator();
-            validator.validateStringInput(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+
+        Validator validator = new Validator();
+        validator.validateStringInput(input);
         return Arrays.asList(input.split(SEPARATOR));
     }
-
 
 }
