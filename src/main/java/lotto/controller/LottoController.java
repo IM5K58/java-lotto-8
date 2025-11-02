@@ -19,7 +19,7 @@ public class LottoController {
 
     public void run(){
         int money = Integer.parseInt(input.inputMoney());
-        System.out.println();
+
         LottoCount lottoCounts = new LottoCount(money);
         int counts = lottoCounts.getLottoCounts();
         output.showLottoCounts(counts);

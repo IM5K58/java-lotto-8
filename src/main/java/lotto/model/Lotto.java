@@ -1,14 +1,17 @@
 package lotto.model;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validate(numbers);
+        validate_two(numbers);
+        validateDuplicates(numbers);
         this.numbers = numbers;
         sort(this.numbers);
     }
@@ -42,6 +45,12 @@ public class Lotto {
             if(!(number > 0 && number < 46)){
                 throw new IllegalArgumentException("[Error] 숫자가 잘못되었습니다.");
             }
+        }
+    }
+    private void validateDuplicates(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
         }
     }
 
