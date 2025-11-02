@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class SeparatorTest {
     @Test
@@ -16,6 +15,6 @@ class SeparatorTest {
         String sep_value = "1,2,3,4,5,6";
         List<String> sep_res = separator.separate(sep_value);
 
-        assertThat(sep_res).isEqualTo((1,2,3,4,5,6));
+        assertThat(sep_res).containsExactly("1", "2", "3", "4", "5", "6");
     }
 }
