@@ -22,7 +22,6 @@ public class LottoController {
     private final LottoGenerator lottoGenerator = new LottoGenerator();
     private final Parser parser = new Parser();
     private final Separator separator = new Separator();
-    private final Validator validator = new Validator();
 
     public void run(){
         int money = inputValidMoney();
