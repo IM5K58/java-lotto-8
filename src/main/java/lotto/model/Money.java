@@ -3,7 +3,7 @@ package lotto.model;
 import lotto.utils.Parser;
 
 public class Money {
-    private int money;
+    private final int money;
     public Money(String money){
         Validator validator = new Validator();
         Parser moneyParser = new Parser();

@@ -76,12 +76,8 @@ public class LottoController {
     private int inputValidBonusNumber(Lotto winningLotto) {
         while (true) {
             try {
-                String bonusInput = input.inputBonusNumber();
-                int bonusNumber = parser.integerParser(bonusInput);
-                validator.validateBonusNumberDuplicates(bonusNumber,winningLotto);
-                validator.validateBonusNumberRange(bonusNumber);
-                System.out.println();
-                return bonusNumber;
+                BonusNumber bonusNumber = new BonusNumber(input.inputBonusNumber(),  winningLotto);
+                return bonusNumber.getBonusNumber();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
