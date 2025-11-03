@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.utils.Separator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

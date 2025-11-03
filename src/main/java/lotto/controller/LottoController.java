@@ -1,6 +1,9 @@
 package lotto.controller;
 
 import lotto.model.*;
+import lotto.utils.Parser;
+import lotto.utils.ROIcalculator;
+import lotto.utils.Separator;
 import lotto.view.Input;
 import lotto.view.Output;
 import lotto.dto.LottosDTO;
@@ -27,13 +30,10 @@ public class LottoController {
         int counts = lottoCounts.getLottoCounts();
         output.showLottoCounts(counts);
 
-
         Lottos lottos = generateLottos(counts);
         output.showLottos(lottosToLottosDTO(lottos));
 
-
         Lotto winningLotto = inputValidWinningLotto();
-
         int bonusNumber = inputValidBonusNumber(winningLotto);
 
         WinningCheck winningCheck = new WinningCheck(winningLotto, bonusNumber);
@@ -44,16 +44,14 @@ public class LottoController {
         ROIcalculator roiCalculator = new ROIcalculator();
         double ROI = roiCalculator.ROI(money, winningCheck.calculateTotalPrize(rankMap));
         output.showROI(ROI);
+
     }
 
     private int inputValidMoney() {
         while (true) {
             try {
-                String moneyInput = input.inputMoney();
-                validator.validateMoneyContainsCharacter(moneyInput);
-                int money = parser.integerParser(moneyInput);
-                validator.validateMoney(money);
-                return money;
+                Money money = new Money(input.inputMoney());
+                return money.getMoney();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

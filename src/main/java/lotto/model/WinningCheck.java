@@ -18,7 +18,6 @@ public class WinningCheck {
         for(Map.Entry<WinningRank, Integer> entry : winningTimes.entrySet()){
             WinningRank winningRank = entry.getKey();
             int count = entry.getValue();
-
             totalPrize += (long)winningRank.getPrizeMoney() * count;
         }
         return totalPrize;
@@ -26,20 +25,18 @@ public class WinningCheck {
 
     public Map<WinningRank, Integer> getWinningTimes(Lottos lottos) {
         Map<WinningRank, Integer> winningTimes = new EnumMap<>(WinningRank.class);
-
         countWinnings(lottos, winningTimes);
         return winningTimes;
     }
 
     private void countWinnings(Lottos lottos, Map<WinningRank, Integer> winningTimes) {
         for (WinningRank rank : WinningRank.values()) {
-            winningTimes.put(rank, 0);
+            winningTimes.put(rank, 0); //당첨 횟수 초기화
         }
         for (Lotto lotto : lottos.getLottos()) {
             int matchCount = lotto.matchCount(this.winningNumber);
             boolean bonusMatch = lotto.matchBonus(this.bonusNumber);
-            WinningRank rank = WinningRank.findRank(matchCount, bonusMatch); //
-
+            WinningRank rank = WinningRank.findRank(matchCount, bonusMatch);
             winningTimes.put(rank, winningTimes.get(rank) + 1);
         }
     }

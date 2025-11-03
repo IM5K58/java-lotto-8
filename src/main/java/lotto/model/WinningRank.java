@@ -1,7 +1,7 @@
 package lotto.model;
 
 public enum WinningRank {
-    FIRST(6,2_000_000_000), //money를 long으로 변경 고려
+    FIRST(6,2_000_000_000),
     SECOND(5,30_000_000),
     THIRD(5, 1_500_000),
     FOURTH(4, 50_000),
@@ -45,7 +45,6 @@ public enum WinningRank {
             return FIFTH;
         }
 
-        // 꽝 (0~2개 일치)
         return MISS;
     }
 

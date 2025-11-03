@@ -1,4 +1,6 @@
-package lotto.model;
+package lotto.utils;
+
+import lotto.model.Validator;
 
 import java.util.Arrays;
 import java.util.List;
