@@ -5,60 +5,57 @@ import java.util.List;
 import java.util.Set;
 
 public class Validator {
-    static final String AT_LEAST_ONE_LOTTO_WARNING = "[ERROR] 로또를 최소 1회 뽑을 수 있는 돈을 입력해야합니다.";
-    static final String MUST_DIVIDED_WITH_UNIT = "[ERROR] 1000으로 나누어 떨어질 수 있는 돈을 입력해야합니다.";
+
     public void validateLottoSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != Constants.SIZE) {
+            throw new IllegalArgumentException(Constants.MUST_SATISFY_SIZE);
         }
     }
 
     public void validateNumberRange(List<Integer> numbers) {
         for(Integer number : numbers){
-            if(!(number > 0 && number < 46)){
-                throw new IllegalArgumentException("[ERROR] 숫자가 잘못되었습니다.");
+            if(!(number >= Constants.MIN_RANGE && number <= Constants.MAX_RANGE)){
+                throw new IllegalArgumentException(Constants.INVALID_NUMBER);
             }
         }
     }
     public void validateDuplicates(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+            throw new IllegalArgumentException(Constants.DUPLICATED_NUMBER_FOUND);
         }
     }
 
     public void validateMoney(int money){
-        if(money < 1000){
-            throw new IllegalArgumentException(AT_LEAST_ONE_LOTTO_WARNING);
+        if(money < Constants.LOTTO_PRICE){
+            throw new IllegalArgumentException(Constants.AT_LEAST_ONE_LOTTO_WARNING);
         }
-        else if(money % 1000 != 0){
-            throw new IllegalArgumentException(MUST_DIVIDED_WITH_UNIT);
+        else if(money % Constants.LOTTO_PRICE != 0){
+            throw new IllegalArgumentException(Constants.MUST_DIVIDED_WITH_UNIT);
         }
     }
 
     public void validateStringInput(String input){
-        String pattern = "^[0-9,]+$";
-        if(!input.matches(pattern)){
-            throw new IllegalArgumentException("[ERROR] 잘못된 당첨 번호가 입력되었습니다.");
+        if(!input.matches(Constants.PATTERN)){
+            throw new IllegalArgumentException(Constants.WRONG_NUMBER_INPUT);
         }
     }
 
     public void validateBonusNumberDuplicates(int bonusNumber,Lotto lotto){
         if(lotto.getLottoNumbers().contains(bonusNumber)){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호 사이에 중복된 값이 존재합니다.");
+            throw new IllegalArgumentException(Constants.DUPLICATED_NUMBER_FOUND_BETWEEN_BONUS_AND_LOTTO);
         }
     }
 
     public void validateBonusNumberRange(int bonusNumber){
-        if(!(bonusNumber > 0 && bonusNumber <46)){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 유효한 범위의 값이 아닙니다.");
+        if(!(bonusNumber >= Constants.MIN_RANGE && bonusNumber <= Constants.MAX_RANGE)){
+            throw new IllegalArgumentException(Constants.INVALID_BONUS_NUMBER);
         }
     }
 
     public void validateMoneyContainsCharacter(String money){
-        String pattern = "^[0-9]+$";
-        if(!money.matches(pattern)){
-            throw new IllegalArgumentException("[ERROR] 입력된 금액에 잘못된 문자가 포합되었습니다.");
+        if(!money.matches(Constants.PATTERN)){
+            throw new IllegalArgumentException(Constants.INVALID_CHARACTER_IN_MONEY_INPUT);
         }
     }
 }
