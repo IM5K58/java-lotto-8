@@ -64,7 +64,6 @@ public class LottoController {
                 List<String> sep_res = separator.separate(inputLotto);
                 List<Integer> numbers = parser.integerParser(sep_res);
                 Lotto winningLotto = new Lotto(numbers);
-                System.out.println();
                 return winningLotto;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -101,25 +100,21 @@ public class LottoController {
     }
 
     private WinningResultDTO convertToWinningResultDTO(Map<WinningRank, Integer> rankMap) {
-        List<WinningRank> displayRanks = List.of(
-                WinningRank.FIFTH,
-                WinningRank.FOURTH,
-                WinningRank.THIRD,
-                WinningRank.SECOND,
-                WinningRank.FIRST
-        );
 
-        List<RankResultDTO> dtoList = new ArrayList<>();
-        for (WinningRank rank : displayRanks) {
+        List<RankResultDTO> RankDTO = new ArrayList<>();
+        for (WinningRank rank : rankMap.keySet()) {
+            if (rank == WinningRank.MISS) {
+                continue;
+            }
             int count = rankMap.get(rank);
-            dtoList.add(new RankResultDTO(
+            RankDTO.add(new RankResultDTO(
                     rank.getMatchCount(),
                     (long) rank.getPrizeMoney(),
                     rank == WinningRank.SECOND,
                     count
             ));
         }
-        return new WinningResultDTO(dtoList);
+        return new WinningResultDTO(RankDTO);
     }
 }
 
