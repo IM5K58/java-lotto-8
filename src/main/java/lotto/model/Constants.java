@@ -1,8 +1,8 @@
 package lotto.model;
 
 public class Constants {
-    
     static final String ERROR = "[ERROR]";
+    static final String SEPARATOR = ",";
     static final int SIZE = 6;
     static final int MAX_RANGE = 45;
     static final int MIN_RANGE = 1;

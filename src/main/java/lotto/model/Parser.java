@@ -14,4 +14,5 @@ public class Parser {
     public int integerParser(String number){
         return Integer.parseInt(number);
     }
+
 }

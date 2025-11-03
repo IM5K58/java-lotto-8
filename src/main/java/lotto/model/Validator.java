@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Validator {
-
     public void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != Constants.SIZE) {
             throw new IllegalArgumentException(Constants.MUST_SATISFY_SIZE);
@@ -58,4 +57,5 @@ public class Validator {
             throw new IllegalArgumentException(Constants.INVALID_CHARACTER_IN_MONEY_INPUT);
         }
     }
+
 }
